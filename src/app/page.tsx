@@ -76,7 +76,7 @@ export default function Home() {
       // Ensure video is ready before proceeding
       if (video.readyState !== 4) {
         // 4 means the video is "HAVE_ENOUGH_DATA"
-        console.warn("Video not ready for face detection");
+        console.log("Video not ready for face detection");
         return;
       }
 
@@ -86,7 +86,7 @@ export default function Home() {
           .withFaceLandmarks();
 
         if (!detections || detections.length === 0) {
-          console.warn("No faces detected");
+          console.log("No faces detected");
           return;
         }
 
@@ -123,10 +123,10 @@ export default function Home() {
 
   useEffect(() => {
     if (isScanning) {
-      const interval = setInterval(detectFaces, 200); 
+      const interval = setInterval(detectFaces, 200);
       return () => clearInterval(interval);
     }
-  }, [isScanning, modelsLoaded, detectFaces]);
+  }, [isScanning, modelsLoaded]);
 
   return (
     <main className="min-h-screen relative">
